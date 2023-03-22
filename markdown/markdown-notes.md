@@ -82,6 +82,4 @@ print('more_than_50 is equal to', more_than_50)
 
 ## Image
 
-<img src="https://raw.githubusercontent.com/Jburnett2020
-/
-2023-Spring_CRCP-3320/main/images/background-1.jpg" width="500" height="500" />
+<img src="https://raw.githubusercontent.com/Jburnett2020/2023-Spring_CRCP-3320/main/images/background-1.jpg" width="500" height="500" />
