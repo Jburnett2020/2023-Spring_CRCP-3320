@@ -15,7 +15,7 @@
 <!-- relative path to an image -->
 ## Local Image
 
-<img src="./images/background-1" width="500" height="500" />
+<img src="./images/background-1.jpg" width="500" height="500" />
 
 <!-- video embedding with iframe -->
 ## Embedded YouTube Video using iframe
