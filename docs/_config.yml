@@ -1,3 +1,5 @@
-theme: chulapa-jekyll
+remote_theme: dieghernan/chulapa
+plugins:
+- jekyll-remote-theme
 title: CRCP 3320 - Spring 2023
 description: Repository for CRCP 3320 for the Spring 2023 semester
