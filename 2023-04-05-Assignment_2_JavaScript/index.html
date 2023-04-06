@@ -1,0 +1,108 @@
+<html>
+  <head>
+    <title>Banking Page</title>
+  </head>
+  <body>
+    <label for="initial-amount">Initial Amount:</label>
+    <input type="number" id="initial-amount" name="initial-amount">
+
+    <div id="transactions"></div>
+
+    <button id="add-transaction">Add Transaction</button>
+    <button id="calculate">Calculate</button>
+    <button id="reset">Reset</button>
+
+    <script>
+      // get elements
+      const initialAmount = document.getElementById("initial-amount");
+      const transactionsDiv = document.getElementById("transactions");
+      const addTransactionButton = document.getElementById("add-transaction");
+      const calculateButton = document.getElementById("calculate");
+      const resetButton = document.getElementById("reset");
+
+      // initialize variables
+      let transactions = [];
+
+      // add transaction button event listener
+      addTransactionButton.addEventListener("click", () => {
+        // create transaction elements
+        const transactionDiv = document.createElement("div");
+        const typeSelect = document.createElement("select");
+        const amountInput = document.createElement("input");
+        const deleteButton = document.createElement("button");
+
+        // add options to select element
+        const depositOption = document.createElement("option");
+        depositOption.value = "deposit";
+        depositOption.text = "Deposit";
+        const withdrawalOption = document.createElement("option");
+        withdrawalOption.value = "withdrawal";
+        withdrawalOption.text = "Withdrawal";
+        typeSelect.add(depositOption);
+        typeSelect.add(withdrawalOption);
+
+        // set attributes for input elements
+        amountInput.type = "number";
+        amountInput.min = 0;
+
+        // set text for delete button
+        deleteButton.textContent = "Delete";
+
+        // add event listener for delete button
+        deleteButton.addEventListener("click", () => {
+          transactionDiv.remove();
+          transactions = transactions.filter(t => t !== transaction);
+        });
+
+        // append elements to transaction div
+        transactionDiv.append(typeSelect);
+        transactionDiv.append(amountInput);
+        transactionDiv.append(deleteButton);
+
+        // append transaction div to transactions div
+        transactionsDiv.append(transactionDiv);
+
+        // add transaction to array
+        const transaction = { type: typeSelect, amount: amountInput };
+        transactions.push(transaction);
+      });
+
+      // calculate button event listener
+      calculateButton.addEventListener("click", () => {
+        let total = parseFloat(initialAmount.value);
+
+        for (const transaction of transactions) {
+          if (transaction.type.value === "" || transaction.amount.value === "") {
+            alert("All transactions must have a type and amount.");
+            return;
+          }
+
+          const amount = parseFloat(transaction.amount.value);
+
+          if (transaction.type.value === "deposit") {
+            total += amount;
+          } else if (transaction.type.value === "withdrawal") {
+            total -= amount;
+          }
+        }
+
+        const totalDiv = document.createElement("div");
+        totalDiv.textContent = "Total: " + total.toFixed(2);
+        if (total >= 0) {
+          totalDiv.style.color = "green";
+        } else {
+          totalDiv.style.color = "red";
+        }
+
+        transactionsDiv.append(totalDiv);
+      });
+
+      // reset button event listener
+      resetButton.addEventListener("click", () => {
+        initialAmount.value = "";
+        transactionsDiv.innerHTML = "";
+        transactions = [];
+      });
+    </script>
+  </body>
+</html>
